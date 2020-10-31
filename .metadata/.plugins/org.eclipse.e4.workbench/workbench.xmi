@@ -171,6 +171,7 @@
       <children xsi:type="basic:PartStack" xmi:id="_LJilMVCSEeqbooMbRd1L6g" elementId="stickyFolderRight" visible="false" containerData="2500" selectedElement="_LJilM1CSEeqbooMbRd1L6g">
         <tags>Minimized</tags>
         <tags>Maximized</tags>
+        <tags>active</tags>
         <children xsi:type="advanced:Placeholder" xmi:id="_LJilMlCSEeqbooMbRd1L6g" elementId="org.eclipse.help.ui.HelpView" toBeRendered="false" ref="_LJhXEFCSEeqbooMbRd1L6g" closeable="true">
           <tags>View</tags>
           <tags>categoryTag:Help</tags>
@@ -197,6 +198,7 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view>&#xA;&lt;presentation currentPage=&quot;qroot&quot; restore=&quot;true&quot;/>&#xA;&lt;standbyPart/>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <tags>active</tags>
       <menus xmi:id="_Ly0ywFCSEeqbooMbRd1L6g" elementId="org.eclipse.ui.internal.introview">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -213,7 +215,6 @@
       <children xsi:type="basic:PartStack" xmi:id="_LO5mUVCSEeqbooMbRd1L6g" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_fFuU4FCUEeqbooMbRd1L6g">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
-        <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_fFuU4FCUEeqbooMbRd1L6g" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Tomcat v9.0 Server at localhost" iconURI="platform:/plugin/org.eclipse.wst.server.ui/icons/obj16/server.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.wst.server.ui.editor&quot; name=&quot;Tomcat v9.0 Server at localhost&quot; partName=&quot;Tomcat v9.0 Server at localhost&quot; title=&quot;Tomcat v9.0 Server at localhost&quot; tooltip=&quot;/Servers/Tomcat v9.0 Server at localhost.server&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.wst.server.ui.editor.input.factory&quot; server-id=&quot;Tomcat v9.0 Server at localhost&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -493,7 +494,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_LLHSgFCSEeqbooMbRd1L6g" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Se7ysBQUEeu_irgpPM-gSA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_K0_4mlCSEeqbooMbRd1L6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_9_fVMBQiEeubHMV-IoYTfw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_K0_4mlCSEeqbooMbRd1L6g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_LLHSgVCSEeqbooMbRd1L6g" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -530,7 +531,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_LLHSiFCSEeqbooMbRd1L6g" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Se_dEBQUEeu_irgpPM-gSA" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_K0_RjVCSEeqbooMbRd1L6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_9_iYgBQiEeubHMV-IoYTfw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_K0_RjVCSEeqbooMbRd1L6g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_LLH5kFCSEeqbooMbRd1L6g" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -923,7 +924,7 @@
       <tags>platform:cocoa</tags>
     </bindings>
     <bindings xmi:id="_K1kgWFCSEeqbooMbRd1L6g" keySequence="ALT+SHIFT+D R" command="_K081c1CSEeqbooMbRd1L6g"/>
-    <bindings xmi:id="_RzqoIRQUEeu_irgpPM-gSA" keySequence="COMMAND+CTRL+F" command="_K2Fds1CSEeqbooMbRd1L6g"/>
+    <bindings xmi:id="_9SsgoRQiEeubHMV-IoYTfw" keySequence="COMMAND+CTRL+F" command="_K2Fds1CSEeqbooMbRd1L6g"/>
   </bindingTables>
   <bindingTables xmi:id="_K1UBpVCSEeqbooMbRd1L6g" elementId="org.eclipse.wst.jsdt.ui.javascriptViewScope" bindingContext="_K1C78lCSEeqbooMbRd1L6g">
     <bindings xmi:id="_K1UBplCSEeqbooMbRd1L6g" keySequence="ALT+COMMAND+Q D" command="_K0-qtFCSEeqbooMbRd1L6g">
@@ -1397,7 +1398,7 @@
     <bindings xmi:id="_K1kgV1CSEeqbooMbRd1L6g" keySequence="COMMAND+CR" command="_K0387lCSEeqbooMbRd1L6g"/>
   </bindingTables>
   <bindingTables xmi:id="_K2GExlCSEeqbooMbRd1L6g" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_K0dtHlCSEeqbooMbRd1L6g">
-    <bindings xmi:id="_RzrPMBQUEeu_irgpPM-gSA" keySequence="M1+W" command="_K2GExFCSEeqbooMbRd1L6g"/>
+    <bindings xmi:id="_9StHsBQiEeubHMV-IoYTfw" keySequence="M1+W" command="_K2GExFCSEeqbooMbRd1L6g"/>
   </bindingTables>
   <bindingTables xmi:id="_LO6NYVCSEeqbooMbRd1L6g" bindingContext="_LO6NYFCSEeqbooMbRd1L6g"/>
   <bindingTables xmi:id="_LO60cVCSEeqbooMbRd1L6g" bindingContext="_LO60cFCSEeqbooMbRd1L6g"/>
