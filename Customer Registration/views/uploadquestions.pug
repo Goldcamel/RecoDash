@@ -1,0 +1,144 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'user-page'
+    - var activeGroup = 'pages'
+
+block title
+    title 上传题目
+
+block content
+
+    .row.user
+        .col-md-3
+            .tile.p-0
+                ul.nav.flex-column.nav-tabs.user-tabs
+                    li.nav-item
+                        a.nav-link.active(href='#single-question' data-toggle='tab') 上传单题
+                    li.nav_item
+                        a.nav-link(href='#question-set' data-toggle='tab') 上传题集
+
+        .col-md-9
+            .tab-content
+                #single-question.tab-pane.active
+                    .tile.single-question
+                        h4.line-head 上传单题
+
+                        form
+                            .row.mb-4
+                                .col-md-8
+                                    label 题目描述
+                                    span.required *                                    
+                                    textarea.answer#uploadq_description(rows="3", placeholder = '') 
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 类型
+                                    input#uploadq_type.form-control(type="text", value="")
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 答案
+                                    span.required *    
+                                    input#uploadq_answer.form-control(type="text", value="")
+                
+                            .row
+                                .col-md-4.mb-4.col-sm-3.control-label(for="") 
+                                    label 难度
+                                    span.required *    
+                                    //- .col-sm-9
+                                    select#uploadq_difficulty.form-control
+                                        option(value="") 请选择
+                                        option A
+                                        option B    
+                                        option C
+                                        option D
+                                        option E
+                                        option F
+                                        option G
+                                        option H
+                                        option I
+                                        option J
+                                        option K                                                        
+                                //- .form-group
+                            .row
+                                .col-md-4.mb-4.col-sm-3.control-label(for="") 
+                                    label 次难度
+                                    span.required *    
+                                    //- .col-sm-9
+                                    select#uploadq_subdifficulty.form-control
+                                        option(value="") 请选择
+                                        option 1
+                                        option 2
+                                        option 3
+                                        option 4
+                                        option 5
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 提示
+                                    input#uploadq_hint.form-control(type="text", value="")
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 解析
+                                    input#uploadq_explain.form-control(type="text", value="")
+
+                            .form-group
+                                .col-md-4.alert.alert-danger(role='alert', id="msgDiv")    
+
+                            .row.mb-10
+                                .col-md-12
+                                    button#uploadq_singlesave.btn.btn-primary(type="button")
+                                        i.fa.fa-fw.fa-lg.fa-check-circle
+                                        |  上传
+
+                #question-set.tab-pane.fade
+                    .tile.question-set
+                        h4.line-head 上传题集
+
+                        form
+                            .form-group
+                                .col-md-8
+                                    input#uploadq-file.form-control(type="file" accept=".csv,.")
+
+                            .form-group
+                                .col-md-4.mb-4.col-sm-3.control-label(for="") 
+                                    label 是否公开?
+                                    span.required *
+                                    //- .col-sm-9
+                                    select#uploadq_privacy.form-control
+                                        option(value="") 请选择
+                                        option 公开
+                                        option 私有
+
+                            .form-group
+                                .col-md-4.alert.alert-danger(role='alert', id="msgDiv2")   
+
+                            .row.mb-10
+                                .col-md-12
+                                    button.btn.btn-primary(id="uploadq_setsave", type="button")
+                                        i.fa.fa-fw.fa-lg.fa-check-circle
+                                        |  上传
+
+    script(type="text/javascript").
+        var profile_province = document.getElementById('profile_province');
+        for (var i = 0; i < profile_province.options.length; i++) {
+            if (profile_province.options[i].text == "#{default_profile_province}") {
+                profile_province.options[i].selected = 'selected';
+                profile_province.selectedIndex = i;
+                break;
+            }
+        }
+
+        var profile_gender = document.getElementById('profile_gender');
+        for (var i = 0; i < profile_gender.options.length; i++) {
+            if (profile_gender.options[i].text == "#{default_profile_gender}") {
+                profile_gender.options[i].selected = 'selected';
+                profile_gender.selectedIndex = i;
+                break;
+            }
+        }
+
+block specific-js
+    script(src='../javascripts/uploadquestions.js')

@@ -1,0 +1,58 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'questions'
+    - var activeGroup = 'none'
+
+block title
+    title 题库
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-cloud
+                |  题库
+
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='#') 题库
+
+    .row
+        .col-md-12
+            .tile
+                section.invoice
+
+                    .row.mb-4
+                        .col-6
+                            h2.page-header
+                                i.fa.fa-globe
+                                |  题目列表
+
+                    .row
+                        .col-12.table-responsive
+                            table#questions_table.table.table-hover.table-striped
+                                thead
+                                    tr
+                                        th 编号
+                                        th 类型
+                                        th 难度
+                                        th 次难度
+                                tbody
+                                    each question in questions
+                                        tr 
+                                            td
+                                                a(href='/questions/' + question.id) #{question.id}
+                                            td #{question.type}
+                                            td #{question.difficulty}
+                                            td #{question.subdifficulty}
+
+block specific-js
+    // Data table plugin
+    script(type='text/javascript', src="../javascripts/plugins/jquery.dataTables.min.js")
+    script(type='text/javascript', src="../javascripts/plugins/dataTables.bootstrap.min.js")
+    script(type='text/javascript').
+        $('#questions_table').DataTable();

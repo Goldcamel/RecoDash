@@ -1,0 +1,77 @@
+doctype html
+html
+    head
+        include includes/_head.pug
+        title Login
+
+    body
+        section.material-half-bg
+            .cover
+
+        section.login-content
+            .logo: h1 Kumon
+
+            .login-box
+                form.login-form(action="index.html")
+                    h3.login-head
+                        i.fa.fa-lg.fa-fw.fa-user
+                        | 用户登录
+                        
+                    .form-group
+                        label.control-label 用户名
+                        input#login_username.form-control(type="text", placeholder="Email", autofocus)
+
+                    .form-group
+                        label.control-label 密码
+                        input#login_password.form-control(type="password", placeholder="Password")
+
+                    .form-group
+                        .col-sm-9.col-sm-offset-3
+                            a(href = "/register") 注册账号
+
+                    .form-group
+                        .utility
+                            //- .animated-checkbox
+                            //-     label
+                            //-         input(type="checkbox")
+                            //-         span.label-text Stay Signed in
+                            //- p.semibold-text.mb-2
+                            //-     a(href="#" data-toggle="flip") 忘记密码 ?
+
+                    .form-group.btn-container
+                        button#login.btn.btn-primary.btn-block
+                            i.fa.fa-sign-in.fa-lg.fa-fw
+                            | 登录
+
+                    .form-group
+                        .col-sm-offset-3.mt-3
+                            .alert.alert-danger(role='alert', id="msgDiv")  
+
+                form.forget-form(action="index.html")
+                    h3.login-head
+                        i.fa.fa-lg.fa-fw.fa-lock
+                        | 忘记密码 ?
+                    .form-group
+                        label.control-label 邮箱
+                        input.form-control(type="text", placeholder="Email")
+
+                    .form-group.btn-container
+                        button.btn.btn-primary.btn-block
+                            i.fa.fa-unlock.fa-lg.fa-fw
+                            | 重置密码
+
+                    .form-group.mt-3
+                        p.semibold-text.mb-0
+                            a(href="#" data-toggle="flip") <i class="fa fa-angle-left fa-fw"></i> 返回登录
+
+                
+
+        include includes/_javascript.pug
+
+        script(type="text/javascript").
+            // Login Page Flipbox control
+            $('.login-content [data-toggle="flip"]').click(function() {
+                $('.login-box').toggleClass('flipped');
+                return false;
+            });
+        script(src='javascripts/app.js')

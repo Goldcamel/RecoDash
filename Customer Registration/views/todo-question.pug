@@ -1,0 +1,99 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'question'
+    - var activeGroup = 'none'
+
+block title
+    title='待做题' + question_id
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-file-text-o=' 待做题 ' + question_id
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='/todo') 待完成
+            li.breadcrumb-item
+                a(href='#')=question_id 
+    .row
+        .col-md-12
+            .tile
+                .h3.tile-title 题目
+                p=question_body
+
+    .row
+        .col-md-12
+            .tile
+                .row
+                    textarea.answer#todo_question_answer(rows="3", placeholder = '请输入你的回答') #{ANSWER}
+                .form
+                    .row    
+                        .col-4.col-md-1.mt-2
+                            button#todo_question_hint.btn.btn-primary.btn-block 提示
+                        .col-4.col-md-2.mt-2
+                            button#todo_question_next.btn.btn-primary.btn-block 保存并下一题
+                        
+                .row
+                    #answerDiv.alert.alert-success.mt-2
+                        button#hint_close_btn.close(type='button') ×
+                        p='提示：' + hint
+
+    div(class="modal fade" id="explainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+        div(class="modal-dialog modal-dialog-centered" role="document")
+            div(class="modal-content")
+                div(class="modal-header")
+                    h5.modal-title 题型解析
+                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true") &times;
+                div(class="modal-body")
+                    div#explainContent 该类题型讲解
+                    //- iframe(src="https://www.youtube.com/embed/ptFJJLXsMmI?autoplay=1", style="width: 100%, height: auto", frameborder="0", allowfullscreen)
+                div(class="modal-footer")
+                    button.btn.btn-primary(data-dismiss="modal") 我明白了
+
+
+block specific-js
+    script(type="text/javascript").
+        $(function(){
+            $("#todo_question_hint").on('click', function(event){
+                event.preventDefault();
+                $("#answerDiv").show();
+            })
+        });
+
+        $(function(){
+            $("#hint_close_btn").on('click', function(event){
+                event.preventDefault();
+                $("#answerDiv").hide();
+            })
+        });
+
+        $(function(){
+            $('#todo_question_next').on('click', function(event){
+                event.preventDefault();
+                var answer = $("#todo_question_answer").val();
+
+                $.ajax({
+                    url: "/todo/"+ #{question_id},
+                    method: "POST",
+                    data: {currentid: #{question_id}, answer: answer}
+                }).done(function( data ) {
+
+                    if ( data ) {
+                        if(data.status != 'error'){
+                            if (data.explain != "") {
+                                $('#explainContent').text(data.explain);
+                                $('#explainModal').modal('show');                                
+                            } else {
+                                window.location = "/todo/" + data.message;                                 
+                            }
+                        }
+                    }
+                });
+            });
+        });

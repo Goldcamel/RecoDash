@@ -1,0 +1,167 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'dashboard'
+    - var activeGroup = 'none'
+
+block title
+    title Kumon Demo
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-dashboard
+                |  个人主页
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='/homepage') 个人主页
+
+    .row
+        .col-md-6.col-lg-3
+            .widget-small.primary.coloured-icon
+                i.icon.fa.fa-book.fa-3x
+                div.info
+                    h4 做题总数
+                    p
+                        b #{TOTAL_FINISHED_AMOUNT}
+
+        .col-md-6.col-lg-3
+            .widget-small.info.coloured-icon
+                i.icon.fa.fa-thumbs-o-up.fa-3x
+                div.info
+                    h4 下一目标
+                    p
+                        b #{EXEC_DAY_AMOUNT}
+
+        .col-md-6.col-lg-3
+            .widget-small.warning.coloured-icon
+                i.icon.fa.fa-check.fa-3x
+                div.info
+                    h4 正确率
+                    p
+                        b #{ACCURACY}%
+
+        .col-md-6.col-lg-3
+            .widget-small.danger.coloured-icon
+                i.icon.fa.fa-star.fa-3x
+                div.info
+                    h4 当前等级
+                    p
+                        b #{CURRENT_LEVEL}
+    .row
+        .col-md-6
+            .tile
+                .progress-content
+                    .progress_box
+                        .progress_overview
+                            h3.tile-title 做题进度
+                            .embed-responsive.embed-responsive-16by9
+                                canvas.embed-responsive-item(id="radarChartDemo")
+                            p.semibold-text.mb-2
+                                a(href="#" data-toggle="flip") 查看详情
+
+                        .progress_detail
+                            h3.tile-title 进度详情
+                            .embed-responsive.embed-responsive-16by9
+                                canvas.embed-responsive-item(id="lineChartDemo")
+                            p.semibold-text.mb-0
+                                a(href="#" data-toggle="flip") <i class="fa fa-angle-left fa-fw"></i> 返回进度
+
+        .col-md-6
+            .tile
+                h3.tile-title 做题总数
+                .embed-responsive.embed-responsive-16by9
+                    canvas.embed-responsive-item(id="doughnutChartDemo")
+               
+
+    div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times; 
+                .modal-body
+                    p(style='font-size: 1.2rem') 
+                        span 请先前往
+                        span
+                            a(href="/todo") 待完成界面
+                        span 完成测评!
+                .modal-footer
+                    button.btn.btn-primary(data-dismiss="modal") 确定
+
+block specific-js
+    script(type='text/javascript', src="javascripts/plugins/chart.js")
+    script(type='text/javascript').
+        if (#{TOTAL_FINISHED_AMOUNT} == 0) {
+            $('#myModal').modal('show');
+        }
+
+        $('.progress-content [data-toggle="flip"]').click(function() {
+            $('.progress_box').toggleClass('flipped');
+            return false;
+        });
+
+        var data = {
+            labels: ["A", "B", "C", "D", "E","F", "G", "H", "I", "J", "K"],
+            datasets: [
+                {
+                    label: "解题进度",
+                    fillColor: "rgba(100,220,220,0.2)",
+                    strokeColor: "rgba(100,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [#{progress_data}]
+                }
+            ]
+        };
+        var pdata = [
+            {
+                value: #{CORRECT_AMOUNT},
+                color: "#46BFBD",
+                highlight: "#5AD3D1",
+                label: "正确"
+            },
+            {
+                value: #{WRONG_AMOUNT},
+                color:"#F7464A",
+                highlight: "#FF5A5E",
+                label: "错误"
+            }
+        ];
+
+        var blabels = [];
+        for(let i=0 ; i<=10 ; i++) {
+            for(let j=0 ; j<5 ; j++) {
+                var levelString = String.fromCharCode(i + 'A'.charCodeAt())
+                blabels.push(String.fromCharCode(i + 'A'.charCodeAt()) + String.fromCharCode(j + '1'.charCodeAt()))
+            }
+        }
+        var bdata = {
+            labels: blabels,
+            datasets: [
+                {
+                    label: "解题进度",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(100,220,220,1)",
+                    pointColor: "rgba(220,100,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [#{progress_detaildata}]
+                }
+            ]
+        };
+
+        var ctxr = $("#radarChartDemo").get(0).getContext("2d");
+        var radarChart = new Chart(ctxr).Radar(data);
+
+        var ctxd = $("#doughnutChartDemo").get(0).getContext("2d");
+        var doughnutChart = new Chart(ctxd).Doughnut(pdata);
+
+        var ctxb = $("#lineChartDemo").get(0).getContext("2d");
+        var barChart = new Chart(ctxb).Bar(bdata);

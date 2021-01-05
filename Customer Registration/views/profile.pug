@@ -1,0 +1,217 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'user-page'
+    - var activeGroup = 'pages'
+
+block title
+    title 用户信息
+
+block content
+
+    .row.user
+        .col-md-12
+            .profile
+                //- .info
+                //-     img.user-img(src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg")
+                //-     h4 John Doe
+                //-     p FrontEnd Developer
+                .cover-image
+
+        .col-md-3
+            .tile.p-0
+                ul.nav.flex-column.nav-tabs.user-tabs
+                    //- li.nav-item
+                    //-     a.nav-link(href='#user-timeline' data-toggle='tab') Timeline
+                    li.nav-item
+                        a.nav-link.active(href='#user-settings' data-toggle='tab') 账号设置
+                    li.nav_item
+                        a.nav-link(href='#password-setting' data-toggle='tab') 密码修改
+
+        .col-md-9
+            .tab-content
+                //- #user-timeline.tab-pane.fade
+                //-     .timeline-post
+                //-         .post-media
+                //-             a(href="#")
+                //-                 img(src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg")
+                //-             .content
+                //-                 h5: a(href="#") John Doe
+                //-                 p.text-muted
+                //-                     small 2 January at 9:30
+                //-         .post-content
+                //-             p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,    quis tion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        
+                //-         ul.post-utility
+                //-             li.likes
+                //-                 a(href="#")
+                //-                     i.fa.fa-fw.fa-lg.fa-thumbs-o-up
+                //-                     | Like
+
+                //-             li.shares
+                //-                 a(href="#")
+                //-                     i.fa.fa-fw.fa-lg.fa-share
+                //-                     | Share
+
+                //-             li.comments
+                //-                 i.fa.fa-fw.fa-lg.fa-comment-o
+                //-                 |  5 Comments
+
+                //-     .timeline-post
+                //-         .post-media
+                //-             a(href="#")
+                //-                 img(src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg")
+                //-             .content
+                //-                 h5: a(href="#") John Doe
+                //-                 p.text-muted
+                //-                     small 2 January at 9:30
+                //-         .post-content
+                //-             p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,    quis tion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        
+                //-         ul.post-utility
+                //-             li.likes
+                //-                 a(href="#")
+                //-                     i.fa.fa-fw.fa-lg.fa-thumbs-o-up
+                //-                     | Like
+
+                //-             li.shares
+                //-                 a(href="#")
+                //-                     i.fa.fa-fw.fa-lg.fa-share
+                //-                     | Share
+
+                //-             li.comments
+                //-                 i.fa.fa-fw.fa-lg.fa-comment-o
+                //-                 |  5 Comments
+
+                #user-settings.tab-pane.active
+                    .tile.user-settings
+                        h4.line-head 基础设置
+
+                        form
+                            .row.mb-4
+                                .col-md-4
+                                    label 姓名
+                                    input#profile_fullname.form-control(type="text", value=default_profile_fullname)
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 邮箱
+                                    input#profile_email.form-control(type="text", value=default_profile_email)
+
+                                .clearfix
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 生日
+                                    input#profile_dob.form-control(type="date", value=default_profile_dob)
+
+                            .row
+                                .col-md-4.mb-4.col-sm-3.control-label(for="province") 
+                                    label 省份
+                                    //- .col-sm-9
+                                    select#profile_province.form-control
+                                        option(value="") 请选择
+                                        option 安徽
+                                        option 北京    
+                                        option 重庆
+                                        option 福建
+                                        option 甘肃
+                                        option 广东
+                                        option 广西
+                                        option 贵州
+                                        option 海南
+                                        option 河北
+                                        option 河南    
+                                        option 黑龙江
+                                        option 湖北
+                                        option 湖南
+                                        option 吉林
+                                        option 江苏
+                                        option 江西
+                                        option 辽宁
+                                        option 内蒙古
+                                        option 宁夏
+                                        option 青海
+                                        option 山东
+                                        option 山西
+                                        option 陕西
+                                        option 上海
+                                        option 四川
+                                        option 天津
+                                        option 西藏
+                                        option 新疆    
+                                        option 云南
+                                        option 浙江
+                                        option 港澳台
+                                        option 海外
+                                                    
+                                //- .form-group
+                            .row
+                                .col-md-4.mb-4.col-sm-3.control-label(for="gender") 
+                                    label 性别
+                                    //- .col-sm-9
+                                    select#profile_gender.form-control
+                                        option(value="") 请选择
+                                        option 男
+                                        option 女
+
+                            .form-group
+                                .col-md-4.alert.alert-danger(role='alert', id="msgDiv")    
+
+                            .row.mb-10
+                                .col-md-12
+                                    button#profile_save.btn.btn-primary(type="button")
+                                        i.fa.fa-fw.fa-lg.fa-check-circle
+                                        |  保存更改
+
+                #password-setting.tab-pane.fade
+                    .tile.password-setting
+                        h4.line-head 修改密码
+
+                        form
+                            .row.mb-4
+                                .col-md-4
+                                    label 原密码
+                                    input#profile_original_password.form-control(type="password", value="")
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 新密码
+                                    input#profile_new_password.form-control(type="password", value="")
+
+                            .row
+                                .col-md-4.mb-4
+                                    label 确认密码
+                                    input#profile_comfirmed_password.form-control(type="password", value="")
+                            
+                            .form-group
+                                .col-md-4.alert.alert-danger(role='alert', id="msgDiv2")   
+
+                            .row.mb-10
+                                .col-md-12
+                                    button.btn.btn-primary(id="profile_password_save", type="button", name="save_password_btn")
+                                        i.fa.fa-fw.fa-lg.fa-check-circle
+                                        |  保存更改
+
+
+    script(type="text/javascript").
+        var profile_province = document.getElementById('profile_province');
+        for (var i = 0; i < profile_province.options.length; i++) {
+            if (profile_province.options[i].text == "#{default_profile_province}") {
+                profile_province.options[i].selected = 'selected';
+                profile_province.selectedIndex = i;
+                break;
+            }
+        }
+
+        var profile_gender = document.getElementById('profile_gender');
+        for (var i = 0; i < profile_gender.options.length; i++) {
+            if (profile_gender.options[i].text == "#{default_profile_gender}") {
+                profile_gender.options[i].selected = 'selected';
+                profile_gender.selectedIndex = i;
+                break;
+            }
+        }
+
+block specific-js
+    script(src='../javascripts/profile.js')

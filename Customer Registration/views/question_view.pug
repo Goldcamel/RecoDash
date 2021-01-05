@@ -1,0 +1,35 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'question'
+    - var activeGroup = 'none'
+
+block title
+    title='题目' + question_id
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-file-text-o=' 题目 ' + question_id
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='/history') 做题记录
+            li.breadcrumb-item
+                a(href='#')=question_id 
+    .row
+        .col-md-12
+            .tile
+                .h3.tile-title 题目
+                p=question_body
+
+    .row
+        .col-md-12
+            .tile
+                .row
+                    h5 你的回答:
+                .row
+                    p=question_answer

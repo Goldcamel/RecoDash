@@ -1,0 +1,42 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'question'
+    - var activeGroup = 'none'
+
+block title
+    title='题目' + question_id
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-file-text-o=' 题目 ' + question_id
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='/questions') 题库
+            li.breadcrumb-item
+                a(href='#')=question_id 
+    .row
+        .col-md-12
+            .tile
+                .h3.tile-title 题目
+                p=question_body
+
+    .row
+        .col-md-12
+            .tile
+                .row
+                    textarea.answer#answer(rows="3", placeholder = '请输入你的回答')
+                .row
+                    .col-md-1.offset-md-11.mt-2
+                        button#submit.btn.btn-primary.btn-block 提交
+                .row
+                    #answerDiv.alert.alert-success.mt-2
+                        p='正确答案是：' + key
+
+block specific-js
+    script(src="/javascripts/question.js")

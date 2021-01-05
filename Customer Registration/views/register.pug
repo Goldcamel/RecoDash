@@ -1,0 +1,113 @@
+doctype html
+html
+    head
+        include includes/_head.pug
+        include includes/_javascript.pug
+        title 账号注册
+
+    body
+        section.material-half-bg
+            .cover
+
+        section.register-content
+            .logo: h1 Kumon
+
+            .register-box
+                form.register-form(method="post")
+                    h3.register-head
+                        i.fa.fa-lg.fa-fw.fa-user
+                        | 注册
+
+                    .form-group
+                        .alert.alert-danger(role='alert', id="msgDiv")                        
+                    .form-group
+                        label.control-label 姓名
+                        input.form-control(id="fullname", type="text", placeholder="Name", autofocus)
+                    .form-group
+                        label.control-label 邮箱
+                        input.form-control(id="email", type="text", placeholder="Email", autofocus)
+                    .form-group
+                        label.control-label 密码
+                        input.form-control(id="password", type="password", placeholder="Password")
+                    .form-group
+                        label.control-label 确认密码
+                        input.form-control(id="cpassword", type="password", placeholder="Comfirm Password")                 
+                    .form-group
+                        label.control-label 出生日期
+                        input.form-control(id="dob", type="date")
+                    .form-group
+                        label.control-label 省份
+                        select.form-control(id="province")      
+                            option(value='') 请选择
+                            option 安徽
+                            option 北京    
+                            option 重庆
+                            option 福建
+                            option 甘肃
+                            option 广东
+                            option 广西
+                            option 贵州
+                            option 海南
+                            option 河北
+                            option 河南    
+                            option 黑龙江
+                            option 湖北
+                            option 湖南
+                            option 吉林
+                            option 江苏
+                            option 江西
+                            option 辽宁
+                            option 内蒙古
+                            option 宁夏
+                            option 青海
+                            option 山东
+                            option 山西
+                            option 陕西
+                            option 上海
+                            option 四川
+                            option 天津
+                            option 西藏
+                            option 新疆    
+                            option 云南
+                            option 浙江
+                            option 港澳台
+                            option 海外
+                    .form-group
+                        label.control-label 班级排名
+                        select.form-control(id="rank")      
+                            option(value='') 请选择
+                            option(value=1) 前10%
+                            option(value=2) 10%~20%    
+                            option(value=3) 20%~30%
+                            option(value=4) 30%~40%    
+                            option(value=5) 40%~50%
+                            option(value=6) 50%~60%    
+                            option(value=7) 60%~70%
+                            option(value=8) 70%~80%
+                            option(value=9) 80%~90%
+                            option(value=10) 90%~100%
+                    .form-group
+                        label.control-label 性别
+                            .utility
+                                .col-sm-6
+                                    label.radio-inline
+                                    input#maleRadio(name="gender" type="radio" value="Male")
+                                    | &nbsp;男                 
+                                .col-sm-6
+                                    label.radio-inline
+                                    input#femaleRadio(name="gender" type="radio" value="Female")
+                                    | &nbsp;女
+                    .form-group
+                        .checkbox
+                        label
+                            input#terms(type="checkbox" value="yes" name="terms")
+                            | &nbsp;我同意
+                            a(href='#') 条款                    
+                    .form-group.btn-container
+                        button#register.btn.btn-primary.btn-block
+                            i.fa.fa-sign-in.fa-lg.fa-fw
+                            | 注册
+                    .form-group
+                        .utility
+                            p.semibold-text.mb-0
+                                a(href="/") 已有账号，立即登录

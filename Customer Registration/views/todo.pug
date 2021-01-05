@@ -1,0 +1,144 @@
+extends layouts/_layout.pug
+
+block variables
+    - var activePage = 'invoice-page'
+    - var activeGroup = 'pages'
+
+block title
+    title 待完成
+
+block content
+    .app-title
+        div
+            h1
+                i.fa.fa-file-text-o
+                |  待做题
+            //- p A Printable Invoice Format
+
+        ul.app-breadcrumb.breadcrumb
+            li.breadcrumb-item
+                i.fa.fa-home.fa-lg
+            li.breadcrumb-item
+                a(href='#') 待做题
+
+    .row
+        .col-md-12
+            .tile
+                h5#progress-basic 完成进度 (#{progress}%)
+                .bs-component.mb-2
+                    .progress
+                        .progress-bar(role='progressbar', style='width:' + progress + '%;', aria-valuenow='75', aria-valuemin='0', aria-valuemax='100')
+
+            .tile
+                section.invoice
+
+                    .row.mb-4
+                        .col-6
+                            h2.page-header
+                                i.fa.fa-globe
+                                |  当前题目
+                        //- .col-6
+                        //-     h5.text-right Date: 01/01/2016
+
+                    //- .row.invoice-info
+                    //-     .col-4
+                    //-         | From
+                    //-         address
+                    //-             strong Vali Inc.
+                    //-             br
+                    //-             | 518 Akshar Avenue
+                    //-             br
+                    //-             | Gandhi Marg
+                    //-             br
+                    //-             | New Delhi
+                    //-             br
+                    //-             | Email: hello@vali.com
+
+                    //-     .col-4
+                    //-         | To
+                    //-         address
+                    //-             strong John Doe
+                    //-             br
+                    //-             | 795 Folsom Ave, Suite 600
+                    //-             br
+                    //-             | San Francisco, CA 94107
+                    //-             br
+                    //-             | Phone: (555) 539-1037
+                    //-             br
+                    //-             | Email: john.doe@example.com
+
+                    //-     .col-4
+                    //-         b Invoice #007612
+                    //-         br
+                    //-         br
+                    //-         b Order ID:
+                    //-         |  4F3S8J
+                    //-         br
+                    //-         b Payment Due:
+                    //-         |  2/22/2014
+                    //-         br
+                    //-         b Account:
+                    //-         |  968-34567
+                            
+                    .row
+                        .col-12.table-responsive
+                            table#todopage_table.table.table-hover.table-striped
+                                thead
+                                    tr
+                                        th
+                                        th 编号
+                                        th 类型
+                                        th 难度
+                                        th 次难度
+                                tbody
+                                    each item in ITEMS
+                                        tr 
+                                            td
+                                                span(class="text-success fa " + item.checked)
+                                            td 
+                                                a(href='/todo/' + item.id) #{item.id}
+                                            td #{item.type}
+                                            td #{item.difficulty}
+                                            td #{item.subdifficulty}
+
+                    .row.d-print-none.mt-4
+                        .col-12.text-right
+                            button#todopage_submit.btn.btn-primary
+                                i.fa.fa-check-circle.fa-lg.fa-fw
+                                |  提交
+    
+block specific-js
+    // Data table plugin
+    script(src='/javascripts/todopage.js')
+    script(type='text/javascript', src="/javascripts/plugins/jquery.dataTables.min.js")
+    script(type='text/javascript', src="/javascripts/plugins/dataTables.bootstrap.min.js")
+    script(type='text/javascript', src="/javascripts/plugins/bootstrap-notify.min.js")
+    script(type='text/javascript', src="/javascripts/plugins/sweetalert.min.js")
+    script(type='text/javascript').
+        $('#todopage_table').DataTable();
+
+        $(function(){
+            $('#todopage_submit').on('click', function(event){
+                event.preventDefault();
+
+                if(window.confirm('确认提交？')) {
+                    $.ajax({
+                        url: "/todo",
+                        method: "POST",
+                        data: {}
+                    }).done(function( data ) {
+                        
+                        if(data.status == 'success') {
+                            $.notify({
+                                title: "",
+                                message: "提交成功",
+                                icon: 'fa fa-check' 
+                            },{
+                                type: "info"
+                            });
+                        }
+                    });
+                } 
+                
+            });
+        });
